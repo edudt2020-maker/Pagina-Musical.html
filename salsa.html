@@ -1,0 +1,1347 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MUSICLove</title>
+    <link rel="shortcut icon" href="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRfMv4hpHgt9XxihiU_MSpVlT9xQp-SeMHmsGuF7uQJOk9LI5cD7ufKfVLC&s=10" type="image/x-icon">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+
+<style>
+
+/* ====================== */
+/* AREA DE REGISTRO*/
+/* ====================== */
+
+/* FONDO OSCURO DE LA VENTANA */
+         #modalRegistro .modal-content {
+            background: #17121f;
+            color: #f8f5ff;
+            border: 1px solid #9b4de0;
+            border-radius: 15px;
+            box-shadow: 0 0 25px rgba(157, 62, 235, 0.18);
+            overflow: hidden;
+         }
+
+/* ENCABEZADO */
+         #modalRegistro .registro-header {
+            border-bottom: none;
+            padding: 20px 18px 8px;
+         }   
+
+         #modalRegistro .modal-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #e6c5ff;
+         }
+
+         #modalRegistro .modal-title i {
+            color: #c77dff;
+         }
+
+         #modalRegistro .btn-close {
+            opacity: 0.8;
+         }
+
+         #modalRegistro .modal-body {
+            padding: 10px 18px 20px;
+         }
+
+         #modalRegistro .registro-descripcion {
+            margin-bottom: 16px;
+            color: #e2dbea;
+         }   
+
+/* ETIQUETAS */
+         #modalRegistro .form-label {
+            display: block;
+            margin-bottom: 6px;
+            color: #f5efff;
+            font-size: 0.95rem;
+         }
+
+/* CAMPOS DE TEXTO */
+         #modalRegistro .registro-input {
+            min-height: 40px;
+            background: #292233;
+            color: #ffffff;
+            border: 1px solid transparent;
+            border-radius: 8px;
+            padding: 10px;
+         }
+
+         #modalRegistro .registro-input::placeholder {
+            color: #b8a9c8;
+         }
+
+         #modalRegistro .registro-input:focus {
+            background: #292233;
+            color: #ffffff;
+            border-color: #a33df0;
+            box-shadow: 0 0 0 3px rgba(163, 61, 240, 0.18);
+         }
+
+/* BOTÓN CREAR CUENTA */
+         #modalRegistro .registro-boton {
+            min-height: 55px;
+            background: #982fe8;
+            border: none;
+            border-radius: 8px;
+            color: #ffffff;
+            font-weight: 700;
+            transition: background 0.2s, transform 0.2s;
+         }
+
+         #modalRegistro .registro-boton:hover {
+            background: #ad46f5;
+            transform: translateY(-1px);
+         }
+
+/* MENSAJE DE CONFIRMACIÓN */
+         #modalRegistro .mensaje-registro {
+            margin: 12px 0 0;
+            text-align: center;
+            font-size: 0.9rem;
+            color: #cba7ed;
+         }
+
+/* FONDO DETRÁS DE LA VENTANA */
+         .modal-backdrop.show {
+            opacity: 0.78;
+         }
+
+/* AJUSTE PARA CELULARES */
+         @media (max-width: 576px) {
+         #modalRegistro .modal-dialog {
+            margin: 12px;
+         }
+
+        #modalRegistro .registro-header {
+            padding-top: 16px;
+         }
+
+         #modalRegistro .modal-title {
+            font-size: 1.05rem;
+         }
+         }
+
+/* ====================== */
+/* BARRA DE GENEROS */
+/* ====================== */
+
+         .navbar .nav-item.dropdown {
+            position: relative;
+         }
+
+         .navbar .dropdown-menu {
+            position: absolute !important;
+            top: 100% !important;
+            left: 50% !important;
+            right: auto !important;
+            transform: translateX(-50%) !important;
+            margin-top: 0 !important;
+            background-color: #0d0d0d !important;
+         }
+
+         .navbar .dropdown-item {
+            color: white !important;
+         }
+
+/* ====================== */
+/* COLOR DE "REGISTROS" */
+/* ====================== */
+
+         .navbar .nav-link#enlaceRegistro {
+            color: #000000 !important;
+         }
+
+         .navbar .nav-link#enlaceRegistro:hover,
+         .navbar .nav-link#enlaceRegistro:focus {
+            color: #000000 !important;
+         }
+         
+/* ====================== */
+/* ARTISTAS DEL POP */
+/* ====================== */
+
+         .artistas-salsa {
+            background: #0d0d0d;
+         }
+
+         .artista-card {
+            position: relative;
+            width: 100%;
+            height: 500px;
+            overflow: hidden;
+            border-radius: 18px;
+            background: #111;
+         }
+
+         .artista-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            display: block;
+        }
+
+/* Degradado en la parte inferior */
+         .artista-card::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            height: 35%;
+            background: linear-gradient(
+            transparent,
+            rgba(0, 0, 0, 0.9)
+            );
+         }
+
+/* Nombre del artista */
+         .nombre-artista {
+            position: absolute;
+            bottom: 25px;
+            left: 30px;
+            z-index: 2;
+
+            color: white;
+            font-size: 25px;
+            font-weight: bold;
+         }
+
+/* Flechas */
+         .carousel-control-prev,
+         .carousel-control-next {
+            width: 55px;
+            height: 55px;
+            top: 50%;
+            transform: translateY(-50%);
+
+            background: rgba(0, 0, 0, 0.8);
+            border-radius: 50%;
+            opacity: 1;
+         }   
+
+         .carousel-control-prev {
+            left: 15px;
+         }
+
+         .carousel-control-next {
+            right: 15px;
+         }
+
+         .carousel-control-prev:hover,
+         .carousel-control-next:hover {
+            background: #74887b;
+         }
+/* ====================== */
+/* TARJETAS DE CANCIONES */
+/* ====================== */
+
+         .lista-artistas {
+            background: #0d0d0d;
+            padding: 20px 0 70px;
+         }
+
+         .titulo-lista {
+            color: white;
+            font-weight: bold;
+            margin-bottom: 25px;
+         }
+
+/* Tarjeta */
+
+         .tarjeta-artista {
+            background: #151515;
+            border-radius: 16px;
+            overflow: hidden;
+            height: 100%;
+            transition: 0.3s;
+            border: 1px solid #242424;
+             }
+
+             .tarjeta-artista:hover {
+                transform: translateY(-5px);
+                background: #1c1c1c;
+             }
+
+/* Imagen */
+
+             .tarjeta-artista img {
+                width: 100%;
+                height: 210px;
+                object-fit: cover;
+                display: block;
+             }
+
+/* Información */
+
+             .info-artista {
+                  padding: 18px;
+             }
+
+             .info-artista h4 {
+                color: white;
+                font-size: 20px;
+                font-weight: bold;
+                margin-bottom: 15px;
+             }
+
+/* Canciones */
+
+             .cancion-item {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+
+                padding: 10px 0;
+
+                border-bottom: 1px solid #292929;
+             }
+
+             .cancion-item:last-child {
+                border-bottom: none;
+             }
+
+             .cancion-nombre {
+                color: #ddd;
+                font-size: 14px;
+             }
+
+/* Botón reproducir */
+
+             .btn-reproducir {
+                width: 34px;
+                height: 34px;
+
+                border: none;
+                border-radius: 50%;
+
+                background: #74887b;
+                color: #111;
+
+                display: flex;
+                align-items: center;
+                justify-content: center;
+
+                cursor: pointer;
+
+                transition: 0.2s;
+             }
+
+            .btn-reproducir:hover {
+                background: white;
+                transform: scale(1.1);
+             }
+
+/* Reproductor */
+
+             .reproductor-musica {
+                margin-top: 35px;
+                padding: 18px 22px;
+
+                background: #151515;
+                border-radius: 15px;
+
+                color: white;
+             }
+
+             .reproductor-musica h5 {
+                margin-bottom: 12px;
+                color: #74887b;
+             }
+
+             .reproductor-musica audio {
+                width: 100%;
+             }
+</style>
+
+
+<!-- ====================== -->
+<!-- ====================== -->
+<!-- 1. BARRA DE NAVEGACION -->
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-secondary sticky-top shadow-sm">
+        <div class="container">
+            <a class="navbar-brand fw-bold text-uppercase" href="#" style="color:black">
+                <i class="bi bi-emoji-heart-eyes"></i> MUSICLove
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto align-items-center">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="1 Pagina web.html" style="color:black">VOLVER AL INICIO</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="color:black">GÉNEROS</a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="pop.html">Pop</a></li>
+                            <li><a class="dropdown-item" href="rock.html">Rock</a></li>
+                            <li><a class="dropdown-item" href="reggaeton.html">Reggaetón</a></li>
+                            <li><a class="dropdown-item" href="rap.html">Rap</a></li>
+                            <li><a class="dropdown-item" href="kpop.html">K-pop</a></li>
+                            <li><a class="dropdown-item" href="electronica.html">Electrónica</a></li>
+                            <li><a class="dropdown-item" href="bachata.html">Bachata</a></li>
+                            <li><a class="dropdown-item" href="cumbia.html">Cumbia</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#cantantes" style="color:black">ESCUCHALOS</a>
+                    </li>
+                    <li class="nav-item ms-lg-2">
+                        <a class="nav-link" href="#"id="enlaceRegistro" data-bs-toggle="modal" data-bs-target="#modalRegistro">REGÍSTRATE</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+<!-- =================== -->
+<!-- =================== -->
+<!-- 1.5 VENTANA DE REGISTRO -->
+
+    <div class="modal fade" id="modalRegistro" tabindex="-1"
+             aria-labelledby="tituloRegistro" aria-hidden="true">
+
+          <div class="modal-dialog modal-dialog-centered">
+             <div class="modal-content registro-contenido">
+
+                <div class="modal-header registro-header">
+                    <h5 class="modal-title" id="tituloRegistro">
+                        <i class="bi bi-music-note-beamed"></i>
+                        Únete a MUSICLove
+                    </h5>
+
+                <button type="button"
+                        class="btn-close btn-close-white"
+                        data-bs-dismiss="modal"
+                        aria-label="Cerrar"></button>
+                </div>
+
+             <div class="modal-body">
+                <p class="registro-descripcion">
+                Crea tu cuenta y disfruta de tu música favorita.
+                </p>
+
+                 <form id="formularioRegistro">
+
+                    <div class="mb-3">
+                         <label for="usuarioRegistro" class="form-label">
+                         Nombre de usuario
+                         </label>
+                        <input type="text"
+                               class="form-control registro-input"
+                               id="usuarioRegistro"
+                               placeholder="Escribe tu usuario..."
+                               minlength="3"
+                               required>
+                    </div>
+
+                    <div class="mb-3">
+                         <label for="correoRegistro" class="form-label">
+                         Correo electrónico
+                         </label>
+                         <input type="email"
+                                class="form-control registro-input"
+                                id="correoRegistro"
+                                placeholder="correo@ejemplo.com"
+                                required>
+                    </div>
+
+                    <div class="mb-4">
+                         <label for="contrasenaRegistro" class="form-label">
+                         Contraseña
+                         </label>
+                         <input type="password"
+                                class="form-control registro-input"
+                                id="contrasenaRegistro"
+                                placeholder="Mínimo 8 caracteres"
+                                minlength="8"
+                                required>
+                         </div>
+
+                    <button type="submit" class="btn registro-boton w-100">
+                    CREAR CUENTA
+                    </button>
+
+                    <p id="mensajeRegistro" class="mensaje-registro"
+                   role="status" aria-live="polite"></p>
+
+                 </form>
+                </div>
+ 
+             </div>
+          </div>
+    </div>
+
+<!-- ======================= -->
+<!-- ======================= -->
+<!-- 2. INTERFAZ DE IMAGENES -->
+
+<section id="cantantes" class="artistas-salsa py-5">
+    <div class="container">
+
+        <h2 class="text-white fw-bold mb-4">♫ Salsa ♫</h2>
+
+        <div id="popCarousel" class="carousel slide" data-bs-ride="carousel">
+
+            <div class="carousel-inner">
+
+                <!-- ARTISTA 1 -->
+                <div class="carousel-item active">
+                    <div class="artista-card">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQNjgC2uqapYyKI-KxAvK6Kn25AseeYr92U2VhDaHIbIvw4XF13R4e_atQ&s=10"
+                             alt="Mark Anthony">
+
+                        <div class="nombre-artista">
+                            Mark Anthony
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ARTISTA 2 -->
+                <div class="carousel-item">
+                    <div class="artista-card">
+                        <img src="https://www.billboard.com/wp-content/uploads/2025/04/celia-cruz-press-credit-sarao-entertainment-2025-billboard-1260.jpg" 
+                             class="d-block w-100" 
+                             alt="Celia Cruz">
+
+                        <div class="nombre-artista">
+                            Celia Cruz
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ARTISTA 3 -->
+                <div class="carousel-item">
+                    <div class="artista-card">
+                        <img src="https://semanariouniversidad.com/wp-content/uploads/2021/10/FOTO01-PAG4.jpg" 
+                             class="d-block w-100" 
+                             alt="Rubén Blades">
+
+                        <div class="nombre-artista">
+                            Rubén Blades
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ARTISTA 4 -->
+                <div class="carousel-item">
+                    <div class="artista-card">
+                        <img src="https://latinomusiccafe.com/wp-content/uploads/2010/07/Hector-Lavoe-long-4-750x349.jpg" 
+                             class="d-block w-100" 
+                             alt="Hector Lavoe">
+
+                        <div class="nombre-artista">
+                            Héctor Lavoe
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ARTISTA 5 -->
+                <div class="carousel-item">
+                    <div class="artista-card">
+                        <img src="https://www.las2orillas.co/wp-content/uploads/2023/03/FR.jpeg" 
+                             class="d-block w-100" 
+                             alt="Frankie Ruiz">
+
+                        <div class="nombre-artista">
+                            Frankie Ruiz
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- FLECHA IZQUIERDA -->
+            <button class="carousel-control-prev" type="button" 
+                    data-bs-target="#popCarousel" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon"></span>
+            </button>
+
+            <!-- FLECHA DERECHA -->
+            <button class="carousel-control-next" type="button" 
+                    data-bs-target="#popCarousel" data-bs-slide="next">
+                <span class="carousel-control-next-icon"></span>
+            </button>
+
+        </div>
+    </div>
+</section>
+
+<!-- ======================= -->
+<!-- 3. LISTA DE ARTISTAS -->
+<!-- ======================= -->
+
+<section class="lista-artistas">
+
+    <div class="container">
+
+        <h2 class="titulo-lista">
+            ♫ Artistas y sus canciones ♫
+        </h2>
+
+
+        <div class="row g-4">
+
+
+            <!-- ====================== -->
+            <!-- ARTISTA 1 -->
+            <!-- ====================== -->
+
+            <div class="col-md-6 col-lg-4">
+
+                <div class="tarjeta-artista" id="Héctor Lavoe">
+
+                    <img src="https://www.vanguardia.com/resizer/v2/hector-lavoe-periodico-de-ayer846158120230630174712jpg-L6CAGVFD2JGHLCQYS4B5JHUAWI.jpg?auth=f9b9fe14088ed68e0dc1f899ce8abd30fae2a64b0846e8b1de645495fee96540&smart=true&width=1200&height=800&quality=70"
+                         alt="Héctor Lavoe">
+
+                    <div class="info-artista">
+
+                        <h4>
+                            ~ Héctor Lavoe ~
+                        </h4>
+
+
+                        <div class="cancion-item">
+
+                            <span class="cancion-nombre">
+                                1. El Cantante
+                            </span>
+
+                        <button class="btn-reproducir"
+                                data-audio="Salsa Musicas/1.- El Cantante.mp3"
+                                data-cancion="El Cantante - Héctor Lavoe">
+
+                            <i class="bi bi-play-fill"></i>
+
+                        </button>
+
+                    </div>
+                        <div class="cancion-item">
+
+                            <span class="cancion-nombre">
+                                2. Periodico de Ayer
+                            </span>
+
+                        <button class="btn-reproducir"
+                                data-audio="Salsas Musicas/2.- Periodico de Ayer.mp3"
+                                data-cancion="Periodico de Ayer - Héctor Lavoe">
+
+                                <i class="bi bi-play-fill"></i>
+
+                        </button>
+                    </div>
+
+                    
+                        <div class="cancion-item">
+
+                            <span class="cancion-nombre">
+                                3. Aguanile
+                            </span>
+
+                            <button class="btn-reproducir"
+                                    data-audio="Salsas Musicas/3.- Aguanile.mp3"
+                                    data-cancion="Aguanile - Héctor Lavoe">
+
+                                <i class="bi bi-play-fill"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ====================== -->
+            <!-- ARTISTA 2 -->
+            <!-- ====================== -->
+
+            <div class="col-md-6 col-lg-4">
+
+                <div class="tarjeta-artista" id="Celia Cruz">
+
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSypGz1qTGi1s8ZwwFwNWpNDpVgAlqWs73YOy_hEgOazMh5jgKOLbDJuS4&s=10"
+                         alt="Celia Cruz">
+
+                    <div class="info-artista">
+
+                        <h4>
+                            ~ Celia Cruz ~
+                        </h4>
+
+
+                        <div class="cancion-item">
+
+                            <span class="cancion-nombre">
+                                1. La Vida Es Un Carnaval
+                            </span>
+
+                        <button class="btn-reproducir"
+                                data-audio="Salsa Musicas/4.- La Vida Es Un Carnaval.mp3"
+                                data-cancion="La Vida Es Un Carnaval - Celia Cruz">
+
+                            <i class="bi bi-play-fill"></i>
+                            
+                        </button>
+
+                        </div>
+
+
+                        <div class="cancion-item">
+
+                            <span class="cancion-nombre">
+                                2. Quimbara
+                            </span>
+
+                        <button class="btn-reproducir"
+                                data-audio="Salsa Musicas/5.- Quimbara.mp3"
+                                data-cancion="Quimbara - Celia Cruz">
+
+                            <i class="bi bi-play-fill"></i>
+                            
+                        </button>
+
+                        </div>
+
+
+                        <div class="cancion-item">
+
+                            <span class="cancion-nombre">
+                                3. Yo Viviré
+                            </span>
+
+                        <button class="btn-reproducir"
+                                data-audio="Salsa Musicas/6.- Yo Viviré.mp3"
+                                data-cancion="Yo Viviré - Celia Cruz">
+
+                            <i class="bi bi-play-fill"></i>
+                            
+                        </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ====================== -->
+            <!-- ARTISTA 3 -->
+            <!-- ====================== -->
+
+            <div class="col-md-6 col-lg-4">
+
+                <div class="tarjeta-artista" id="Rubén Blades">
+
+                    <img src="https://www.billboard.com/wp-content/uploads/2026/05/Ruben-Blades-cr-Omar-Charcousse-billboard-2026-bb5-1800.jpg"
+                         alt="Rubén Blades">
+
+                    <div class="info-artista">
+
+                        <h4>
+                            ~ Rubén Blades ~
+                        </h4>
+
+
+                        <div class="cancion-item">
+
+                            <span class="cancion-nombre">
+                                1. Pedro Navaja
+                            </span>
+
+                        <button class="btn-reproducir"
+                                data-audio="Salsa Musicas/7.- Pedro Navaja.mp3"
+                                data-cancion="Pedro Navaja - Rubén Blades">
+
+                            <i class="bi bi-play-fill"></i>
+                            
+                        </button>
+
+                        </div>
+
+
+                        <div class="cancion-item">
+
+                            <span class="cancion-nombre">
+                                2. Plástico
+                            </span>
+
+                        <button class="btn-reproducir"
+                                data-audio="Salsa Musicas/8.- Plastico.mp3"
+                                data-cancion="Plastico - Rubén Blades">
+
+                            <i class="bi bi-play-fill"></i>
+                            
+                        </button>
+
+                        </div>
+
+
+                        <div class="cancion-item">
+
+                            <span class="cancion-nombre">
+                                3. Amor y Control
+                            </span>
+
+                        <button class="btn-reproducir"
+                                data-audio="Salsa Musicas/9.- Amor y Control.mp3"
+                                data-cancion="Amor y Control - Rubén Blades">
+
+                            <i class="bi bi-play-fill"></i>
+                            
+                        </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ====================== -->
+            <!-- ARTISTA 4 -->
+            <!-- ====================== -->
+
+            <div class="col-md-6 col-lg-4">
+
+                <div class="tarjeta-artista" id="Marc Anthony">
+
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSpyHGGo7yjo4aXPo3fzv57QNFT1uaIGUPx8aorWK6EAVEkjWGCbglZxR8&s=10"
+                         alt="Marc Anthony">
+
+                    <div class="info-artista">
+
+                        <h4>
+                            ~ Marc Anthony ~
+                        </h4>
+
+
+                        <div class="cancion-item">
+
+                            <span class="cancion-nombre">
+                                1. Vivir Mi Vida
+                            </span>
+
+                        <button class="btn-reproducir"
+                                data-audio="Salsa Musicas/10.- Vivir Mi Vida.mp3"
+                                data-cancion="Vivir mi vida - Marc Anthony">
+
+                            <i class="bi bi-play-fill"></i>
+                            
+                        </button>
+
+                        </div>
+
+
+                        <div class="cancion-item">
+
+                            <span class="cancion-nombre">
+                                2. Ahora Quién
+                            </span>
+
+                        <button class="btn-reproducir"
+                                data-audio="Salsa Musicas/11.- Ahora Quién.mp3"
+                                data-cancion="Ahora Quién - Mark Anthony">
+
+                            <i class="bi bi-play-fill"></i>
+                            
+                        </button>
+
+                        </div>
+
+
+                        <div class="cancion-item">
+
+                            <span class="cancion-nombre">
+                                3. Mala
+                            </span>
+
+                        <button class="btn-reproducir"
+                                data-audio="Salsa Musicas/12.- Mala.mp3"
+                                data-cancion="Mala - Mark Anthony">
+
+                            <i class="bi bi-play-fill"></i>
+                            
+                        </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ====================== -->
+            <!-- ARTISTA 5 -->
+            <!-- ====================== -->
+
+            <div class="col-md-6 col-lg-4">
+
+                <div class="tarjeta-artista" id="Frankie Ruiz">
+                    <img src="https://larepublica.cronosmedia.glr.pe/original/2021/06/04/60bab844bd7f917910267602.jpg"
+                         alt="Frankie Ruiz">
+
+                    <div class="info-artista">
+
+                        <h4>
+                            ~ Frankie Ruiz ~
+                        </h4>
+
+
+                        <div class="cancion-item">
+
+                            <span class="cancion-nombre">
+                                1. Tú Con El
+                            </span>
+
+                        <button class="btn-reproducir"
+                                data-audio="Salsa Musicas/13.- Tú Con El.mp3"
+                                data-cancion="Tú con él - Frankie Ruiz">
+
+                            <i class="bi bi-play-fill"></i>
+                            
+                        </button>
+
+                        </div>
+
+
+                        <div class="cancion-item">
+
+                            <span class="cancion-nombre">
+                                2. Deseandote
+                            </span>
+
+                        <button class="btn-reproducir"
+                                data-audio="Salsa Musicas/14.- Deseandote.mp3"
+                                data-cancion="Deseandote - Frankie Ruiz">
+
+                            <i class="bi bi-play-fill"></i>
+                            
+                        </button>
+
+                        </div>
+
+
+                        <div class="cancion-item">
+
+                            <span class="cancion-nombre">
+                                3. Desnudate Mujer
+                            </span>
+
+                        <button class="btn-reproducir"
+                                data-audio="Salsa musicas/15.- Desnudate Mujer.mp3"
+                                data-cancion="Desnudate Mujer - Frankie Ruiz">
+
+                            <i class="bi bi-play-fill"></i>
+                            
+                        </button>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ====================== -->
+            <!-- ARTISTA 6 -->
+            <!-- ====================== -->
+
+            <div class="col-md-6 col-lg-4">
+
+                <div class="tarjeta-artista" id="Gilberto Santa Rosa">
+
+                    <img src="https://i.scdn.co/image/ab67616100005174cf25918aa2fcf37c6be79410"
+                         alt="Gilberto Santa Rosa">
+
+                    <div class="info-artista">
+
+                        <h4>
+                            ~ Gilberto Santa Rosa ~
+                        </h4>
+
+
+                        <div class="cancion-item">
+
+                            <span class="cancion-nombre">
+                                1. Con Conciencia
+                            </span>
+
+                        <button class="btn-reproducir"
+                                data-audio="Salsa Musicas/16.- Con Conciencia.mp3"
+                                data-cancion="Con Connciencia - Gilberto Santa Rosa">
+
+                            <i class="bi bi-play-fill"></i>
+                            
+                        </button>
+
+                        </div>
+
+
+                        <div class="cancion-item">
+
+                            <span class="cancion-nombre">
+                                2. Que Alguien Me Diga
+                            </span>
+
+                        <button class="btn-reproducir"
+                                data-audio="Salsa Musicas/17.- Que alguien me diga.mp3"
+                                data-cancion="Que alguien me diga - Gilberto Santa Rosa">
+
+                            <i class="bi bi-play-fill"></i>
+                            
+                        </button>
+
+                        </div>
+
+
+                        <div class="cancion-item">
+
+                            <span class="cancion-nombre">
+                                3. Conteo Regresivo
+                            </span>
+
+                        <button class="btn-reproducir"
+                                data-audio="Salsa Musicas/18.- Conteo Regresiva.mp3"
+                                data-cancion="Conteo Regresivo - Gilberto Santa Rosa">
+
+                            <i class="bi bi-play-fill"></i>
+                            
+                        </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ====================== -->
+            <!-- ARTISTA 7 -->
+            <!-- ====================== -->
+
+            <div class="col-md-6 col-lg-4">
+
+                <div class="tarjeta-artista" id="Óscar D'León">
+
+                    <img src="https://ucarecdn.com/7428648d-ebff-4a66-9115-706d57f06d88/-/crop/1180x992/0,0/-/resize/1035x870/"
+                         alt="Óscar D'León">
+
+                    <div class="info-artista">
+
+                        <h4>
+                            ~ Óscar D'León ~
+                        </h4>
+
+
+                        <div class="cancion-item">
+
+                            <span class="cancion-nombre">
+                                1. Llorarás
+                            </span>
+
+                        <button class="btn-reproducir"
+                                data-audio="Salsa Musicas/19.- Llorarás.mp3"
+                                data-cancion="Llorarás - Óscar D´León ">
+
+                            <i class="bi bi-play-fill"></i>
+                            
+                        </button>
+
+                        </div>
+
+
+                        <div class="cancion-item">
+
+                            <span class="cancion-nombre">
+                                2. Detalles
+                            </span>
+
+                        <button class="btn-reproducir"
+                                data-audio="Salsa Musicas/20.- Detalles.mp3"
+                                data-cancion="Detalles - Óscar D´León ">
+
+                            <i class="bi bi-play-fill"></i>
+
+                        </button>
+
+                        </div>
+
+
+                        <div class="cancion-item">
+
+                            <span class="cancion-nombre">
+                                3. Mata Siguaraya
+                            </span>
+
+                        <button class="btn-reproducir"
+                                data-audio="Salsa Musicas/21.- Mata Siguaraya.mp3"
+                                data-cancion="Mata Siguaraya - Óscar D´León ">
+
+                            <i class="bi bi-play-fill"></i>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ====================== -->
+            <!-- ARTISTA 8 -->
+            <!-- ====================== -->
+
+            <div class="col-md-6 col-lg-4">
+
+                <div class="tarjeta-artista" id="Joe Arroyo">
+
+                    <img src="https://www.biografiasyvidas.com/biografia/a/fotos/arroyo_joe.jpg"
+                         alt="Joe Arroyo">
+
+                    <div class="info-artista">
+
+                        <h4>
+                            ~ Joe Arroyo ~
+                        </h4>
+
+
+                        <div class="cancion-item">
+
+                            <span class="cancion-nombre">
+                                1. Rebelión
+                            </span>
+
+                        <button class="btn-reproducir"
+                                data-audio="Salsa Musicas/22.- Rebelión.mp3"
+                                data-cancion="Rebelión - Joe Arroyo ">
+
+                            <i class="bi bi-play-fill"></i>
+                        </button>
+                        </div>
+
+
+                        <div class="cancion-item">
+
+                            <span class="cancion-nombre">
+                                2. En Barranquilla Me Quedo
+                            </span>
+
+                        <button class="btn-reproducir"
+                                data-audio="Salsa Musicas/23.- En barranquilla Me Quedo.mp3"
+                                data-cancion="En barranquilla Me Quedo - Joe Arroyo ">
+
+                            <i class="bi bi-play-fill"></i>
+                        </button>
+
+                        </div>
+
+
+                        <div class="cancion-item">
+
+                            <span class="cancion-nombre">
+                                3. Tumbatecho
+                            </span>
+
+                        <button class="btn-reproducir"
+                                data-audio="Salsa Musicas/24.- Tumbatecho.mp3"
+                                data-cancion="Tumbatecho - Joe Arroyo ">
+
+                            <i class="bi bi-play-fill"></i>
+                        </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ====================== -->
+            <!-- ARTISTA 9 -->
+            <!-- ====================== -->
+
+            <div class="col-md-6 col-lg-4">
+
+                <div class="tarjeta-artista" id="Cheo Feliciano">
+
+                    <img src="https://www.biografiasyvidas.com/biografia/f/fotos/feliciano_cheo.jpg"
+                         alt="Cheo Feliciano">
+
+                    <div class="info-artista">
+
+                        <h4>
+                            ~ Cheo Feliciano ~
+                        </h4>
+
+
+                        <div class="cancion-item">
+
+                            <span class="cancion-nombre">
+                                1. Anacaona
+                            </span>
+
+                        <button class="btn-reproducir"
+                                data-audio="Salsa Musicas/25.- Anacaona.mp3"
+                                data-cancion="Anacaona - Cheo Feliciano ">
+
+                            <i class="bi bi-play-fill"></i>
+                        </button>
+
+                        </div>
+
+
+                        <div class="cancion-item">
+
+                            <span class="cancion-nombre">
+                                2. El Ratón
+                            </span>
+
+                        <button class="btn-reproducir"
+                                data-audio="Salsa Musicas/26.- El Ratón.mp3"
+                                data-cancion="El Ratón - Cheo Feliciano ">
+
+                            <i class="bi bi-play-fill"></i>
+                        </button>
+
+                        </div>
+
+
+                        <div class="cancion-item">
+
+                            <span class="cancion-nombre">
+                                3. Amada Mía
+                            </span>
+
+                        <button class="btn-reproducir"
+                                data-audio="Salsa Musicas/27.- Amada Mía.mp3"
+                                data-cancion="Amada Mía - Cheo Feliciano ">
+
+                            <i class="bi bi-play-fill"></i>
+                        </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+<!-- =========== -->
+<!-- =========== -->
+<!-- REPRODUCTOR -->
+ 
+        <div class="reproductor-musica">
+
+            <h5 id="cancion-actual">
+                ♫ Selecciona una canción
+            </h5>
+
+        <audio id="reproductor" controls>
+
+            Tu navegador no soporta el reproductor de audio.
+
+        </audio>
+
+        </div>
+
+</section>
+  
+<!-- ================ -->
+<!-- ================ -->
+<!-- 6. PIE DE PAGINA -->
+    
+    <footer class="bg-secondary text-white py-1">
+        <div class="container text-center">
+            <p class="mb-1">&copy; MUSICLove 2026. Todos los derechos reservados.</p>
+            <div class="fs-5">
+                <a href="https://www.instagram.com/?hl=es" class="text-white me-3"><i class="bi bi-facebook"></i></a>
+                <a href="https://www.facebook.com/?locale=es_LA" class="text-white me-3"><i class="bi bi-instagram"></i></a>
+                <a href="https://www.whatsapp.com/?lang=es" class="text-white"><i class="bi bi-whatsapp"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- ================ -->
+<!-- ================ -->
+<!-- 0000. FUNCIONE EL REPODUCTOR -->
+
+ <script>
+
+    const botones = document.querySelectorAll(".btn-reproducir");
+    const reproductor = document.getElementById("reproductor");
+    const cancionActual = document.getElementById("cancion-actual");
+
+    botones.forEach(function(boton) {
+        boton.addEventListener("click", function() {
+            const audio = boton.getAttribute("data-audio");
+            const nombre = boton.getAttribute("data-cancion");
+
+            reproductor.src = audio;
+
+            cancionActual.textContent = "♫ " + nombre; 
+
+            reproductor.play();
+
+        });
+    });
+
+</script>
+
+<!-- ====================== -->
+<!-- ====================== -->
+<!-- 0001. Area de registro -->
+ 
+<script>
+    const formularioRegistro = document.getElementById("formularioRegistro");
+    const modalRegistroElemento = document.getElementById("modalRegistro");
+    const mensajeRegistro = document.getElementById("mensajeRegistro");
+
+    const modalRegistro = bootstrap.Modal.getOrCreateInstance(
+        modalRegistroElemento
+    );
+
+
+    formularioRegistro.addEventListener("submit", function (evento) {
+        evento.preventDefault();
+
+        if (!formularioRegistro.checkValidity()) {
+            formularioRegistro.reportValidity();
+            return;
+        }
+
+        const usuario = document
+            .getElementById("usuarioRegistro")
+            .value.trim();
+
+// Guardar el nombre
+            sessionStorage.setItem("musicloveUsuario", usuario);
+
+// Actualizar la barra inmediatamente
+            actualizarUsuario();
+
+// Mostrar confirmación
+        mensajeRegistro.textContent =
+            `¡Bienvenido a MUSICLove, ${usuario}!`;
+
+// Cerrar la ventana
+        setTimeout(function () {
+            modalRegistro.hide();
+        }, 900);
+    });
+
+// Limpia los campos y el mensaje cuando se cierra la ventana.
+    modalRegistroElemento.addEventListener("hidden.bs.modal", function () {
+        formularioRegistro.reset();
+        mensajeRegistro.textContent = "";
+    });
+
+</script>
+
+<script>
+    const enlaceRegistro = document.getElementById("enlaceRegistro");
+
+    function actualizarUsuario() {
+        const usuario = sessionStorage.getItem("musicloveUsuario");
+
+        if (usuario) {
+            enlaceRegistro.textContent = usuario;
+            enlaceRegistro.removeAttribute("data-bs-toggle");
+            enlaceRegistro.removeAttribute("data-bs-target");
+            enlaceRegistro.href = "#";
+        } else {
+            enlaceRegistro.textContent = "REGÍSTRATE";
+            enlaceRegistro.setAttribute("data-bs-toggle", "modal");
+            enlaceRegistro.setAttribute("data-bs-target", "#modalRegistro");
+        }
+    }
+
+    actualizarUsuario();
+</script>
+
+</body>
+</html>  
