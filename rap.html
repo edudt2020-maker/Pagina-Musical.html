@@ -1,0 +1,1330 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MUSICLove</title>
+    <link rel="shortcut icon" href="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRfMv4hpHgt9XxihiU_MSpVlT9xQp-SeMHmsGuF7uQJOk9LI5cD7ufKfVLC&s=10" type="image/x-icon">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+
+<style>
+/* ====================== */
+/* AREA DE REGISTRO*/
+/* ====================== */
+
+/* FONDO OSCURO DE LA VENTANA */
+         #modalRegistro .modal-content {
+            background: #17121f;
+            color: #f8f5ff;
+            border: 1px solid #9b4de0;
+            border-radius: 15px;
+            box-shadow: 0 0 25px rgba(157, 62, 235, 0.18);
+            overflow: hidden;
+         }
+
+/* ENCABEZADO */
+         #modalRegistro .registro-header {
+            border-bottom: none;
+            padding: 20px 18px 8px;
+         }   
+
+         #modalRegistro .modal-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #e6c5ff;
+         }
+
+         #modalRegistro .modal-title i {
+            color: #c77dff;
+         }
+
+         #modalRegistro .btn-close {
+            opacity: 0.8;
+         }
+
+         #modalRegistro .modal-body {
+            padding: 10px 18px 20px;
+         }
+
+         #modalRegistro .registro-descripcion {
+            margin-bottom: 16px;
+            color: #e2dbea;
+         }   
+
+/* ETIQUETAS */
+         #modalRegistro .form-label {
+            display: block;
+            margin-bottom: 6px;
+            color: #f5efff;
+            font-size: 0.95rem;
+         }
+
+/* CAMPOS DE TEXTO */
+         #modalRegistro .registro-input {
+            min-height: 40px;
+            background: #292233;
+            color: #ffffff;
+            border: 1px solid transparent;
+            border-radius: 8px;
+            padding: 10px;
+         }
+
+         #modalRegistro .registro-input::placeholder {
+            color: #b8a9c8;
+         }
+
+         #modalRegistro .registro-input:focus {
+            background: #292233;
+            color: #ffffff;
+            border-color: #a33df0;
+            box-shadow: 0 0 0 3px rgba(163, 61, 240, 0.18);
+         }
+
+/* BOTÓN CREAR CUENTA */
+         #modalRegistro .registro-boton {
+            min-height: 55px;
+            background: #982fe8;
+            border: none;
+            border-radius: 8px;
+            color: #ffffff;
+            font-weight: 700;
+            transition: background 0.2s, transform 0.2s;
+         }
+
+         #modalRegistro .registro-boton:hover {
+            background: #ad46f5;
+            transform: translateY(-1px);
+         }
+
+/* MENSAJE DE CONFIRMACIÓN */
+         #modalRegistro .mensaje-registro {
+            margin: 12px 0 0;
+            text-align: center;
+            font-size: 0.9rem;
+            color: #cba7ed;
+         }
+
+/* FONDO DETRÁS DE LA VENTANA */
+         .modal-backdrop.show {
+            opacity: 0.78;
+         }
+
+/* AJUSTE PARA CELULARES */
+         @media (max-width: 576px) {
+         #modalRegistro .modal-dialog {
+            margin: 12px;
+         }
+
+        #modalRegistro .registro-header {
+            padding-top: 16px;
+         }
+
+         #modalRegistro .modal-title {
+            font-size: 1.05rem;
+         }
+         }
+/* ====================== */
+/* BARRA DE GENEROS */
+/* ====================== */
+
+         .navbar .nav-item.dropdown {
+            position: relative;
+         }
+
+         .navbar .dropdown-menu {
+            position: absolute !important;
+            top: 100% !important;
+            left: 50% !important;
+            right: auto !important;
+            transform: translateX(-50%) !important;
+            margin-top: 0 !important;
+            background-color: #0d0d0d !important;
+        }
+
+         .navbar .dropdown-item {
+            color: white !important;
+}
+         
+/* ====================== */
+/* COLOR DE "REGISTROS" */
+/* ====================== */
+
+         .navbar .nav-link#enlaceRegistro {
+            color: #000000 !important;
+         }
+
+         .navbar .nav-link#enlaceRegistro:hover,
+         .navbar .nav-link#enlaceRegistro:focus {
+            color: #000000 !important;
+         }
+        
+/* ====================== */
+/* ARTISTAS DEL RAP */
+/* ====================== */
+
+         .artistas-raperos {
+            background: #0d0d0d;
+         }
+
+         .artista-card {
+            position: relative;
+            width: 100%;
+            height: 500px;
+            overflow: hidden;
+            border-radius: 18px;
+            background: #111;
+         }
+
+         .artista-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            display: block;
+        }
+
+/* Degradado en la parte inferior */
+         .artista-card::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            height: 35%;
+            background: linear-gradient(
+            transparent,
+            rgba(0, 0, 0, 0.9)
+            );
+         }
+
+/* Nombre del artista */
+         .nombre-artista {
+            position: absolute;
+            bottom: 25px;
+            left: 30px;
+            z-index: 2;
+
+            color: white;
+            font-size: 25px;
+            font-weight: bold;
+         }
+
+/* Flechas */
+         .carousel-control-prev,
+         .carousel-control-next {
+            width: 55px;
+            height: 55px;
+            top: 50%;
+            transform: translateY(-50%);
+
+            background: rgba(0, 0, 0, 0.8);
+            border-radius: 50%;
+            opacity: 1;
+         }   
+
+         .carousel-control-prev {
+            left: 15px;
+         }
+
+         .carousel-control-next {
+            right: 15px;
+         }
+
+         .carousel-control-prev:hover,
+         .carousel-control-next:hover {
+            background: #74887b;
+         }
+/* ====================== */
+/* TARJETAS DE CANCIONES */
+/* ====================== */
+
+         .lista-artistas {
+            background: #0d0d0d;
+            padding: 20px 0 70px;
+         }
+
+         .titulo-lista {
+            color: white;
+            font-weight: bold;
+            margin-bottom: 25px;
+         }
+
+/* Tarjeta */
+
+         .tarjeta-artista {
+            background: #151515;
+            border-radius: 16px;
+            overflow: hidden;
+            height: 100%;
+            transition: 0.3s;
+            border: 1px solid #242424;
+         }
+
+        .tarjeta-artista:hover {
+            transform: translateY(-5px);
+            background: #1c1c1c;
+         }
+
+/* Imagen */
+
+         .tarjeta-artista img {
+            width: 100%;
+            height: 210px;
+            object-fit: cover;
+            display: block;
+         }
+
+/* Información */
+
+        .info-artista {
+            padding: 18px;
+        }
+
+         .info-artista h4 {
+            color: white;
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 15px;
+         }
+
+/* Canciones */
+
+         .cancion-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            padding: 10px 0;
+
+            border-bottom: 1px solid #292929;
+         }
+
+         .cancion-item:last-child {
+            border-bottom: none;
+         }
+
+         .cancion-nombre {
+            color: #ddd;
+            font-size: 14px;
+         }
+
+/* Botón reproducir */
+
+         .btn-reproducir {
+            width: 34px;
+            height: 34px;
+
+            border: none;
+            border-radius: 50%;
+
+            background: #74887b;
+            color: #111;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            cursor: pointer;
+
+            transition: 0.2s;
+         }
+
+         .btn-reproducir:hover {
+            background: white;
+            transform: scale(1.1);
+         }
+
+/* Reproductor */
+
+         .reproductor-musica {
+            margin-top: 35px;
+            padding: 18px 22px;
+
+            background: #151515;
+            border-radius: 15px;
+
+            color: white;
+         }
+
+         .reproductor-musica h5 {
+            margin-bottom: 12px;
+            color: #74887b;
+         }
+
+         .reproductor-musica audio {
+            width: 100%;
+         }
+
+</style>
+
+
+<!-- ====================== -->
+<!-- ====================== -->
+<!-- 1. BARRA DE NAVEGACION -->
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-secondary sticky-top shadow-sm">
+        <div class="container">
+            <a class="navbar-brand fw-bold text-uppercase" href="#" style="color:black">
+                <i class="bi bi-emoji-heart-eyes"></i> MUSICLove
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto align-items-center">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="1 Pagina web.html" style="color:black">VOLVER AL INICIO</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="color:black">GÉNEROS</a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="pop.html">Pop</a></li>
+                            <li><a class="dropdown-item" href="rock.html">Rock</a></li>
+                            <li><a class="dropdown-item" href="salsa.html">Salsa</a></li>
+                            <li><a class="dropdown-item" href="reggaeton.html">Reggaeton</a></li>
+                            <li><a class="dropdown-item" href="kpop.html">K-pop</a></li>
+                            <li><a class="dropdown-item" href="electronica.html">Electrónica</a></li>
+                            <li><a class="dropdown-item" href="bachata.html">Bachata</a></li>
+                            <li><a class="dropdown-item" href="cumbia.html">Cumbia</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#cantantes" style="color:black">ESCUCHALOS</a>
+                    </li>
+                    <li class="nav-item ms-lg-2">
+                        <a class="nav-link" href="#"id="enlaceRegistro" data-bs-toggle="modal" data-bs-target="#modalRegistro">REGÍSTRATE</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+<!-- =================== -->
+<!-- =================== -->
+<!-- 1.5 VENTANA DE REGISTRO -->
+
+     <div class="modal fade" id="modalRegistro" tabindex="-1"
+             aria-labelledby="tituloRegistro" aria-hidden="true">
+
+          <div class="modal-dialog modal-dialog-centered">
+             <div class="modal-content registro-contenido">
+
+                <div class="modal-header registro-header">
+                    <h5 class="modal-title" id="tituloRegistro">
+                        <i class="bi bi-music-note-beamed"></i>
+                        Únete a MUSICLove
+                    </h5>
+
+                <button type="button"
+                        class="btn-close btn-close-white"
+                        data-bs-dismiss="modal"
+                        aria-label="Cerrar"></button>
+                </div>
+
+             <div class="modal-body">
+                <p class="registro-descripcion">
+                Crea tu cuenta y disfruta de tu música favorita.
+                </p>
+
+                 <form id="formularioRegistro">
+
+                    <div class="mb-3">
+                         <label for="usuarioRegistro" class="form-label">
+                         Nombre de usuario
+                         </label>
+                        <input type="text"
+                               class="form-control registro-input"
+                               id="usuarioRegistro"
+                               placeholder="Escribe tu usuario..."
+                               minlength="3"
+                               required>
+                    </div>
+
+                    <div class="mb-3">
+                         <label for="correoRegistro" class="form-label">
+                         Correo electrónico
+                         </label>
+                         <input type="email"
+                                class="form-control registro-input"
+                                id="correoRegistro"
+                                placeholder="correo@ejemplo.com"
+                                required>
+                    </div>
+
+                    <div class="mb-4">
+                         <label for="contrasenaRegistro" class="form-label">
+                         Contraseña
+                         </label>
+                         <input type="password"
+                                class="form-control registro-input"
+                                id="contrasenaRegistro"
+                                placeholder="Mínimo 8 caracteres"
+                                minlength="8"
+                                required>
+                         </div>
+
+                    <button type="submit" class="btn registro-boton w-100">
+                    CREAR CUENTA
+                    </button>
+
+                    <p id="mensajeRegistro" class="mensaje-registro"
+                   role="status" aria-live="polite"></p>
+
+                 </form>
+                </div>
+ 
+             </div>
+          </div>
+    </div>
+
+<!-- ======================= -->
+<!-- ======================= -->
+<!-- 2. INTERFAZ DE IMAGENES -->
+
+<section id="cantantes" class="artistas-raperos py-5">
+    <div class="container">
+
+        <h2 class="text-white fw-bold mb-4">♫ Rap ♫</h2>
+
+        <div id="popCarousel" class="carousel slide" data-bs-ride="carousel">
+
+            <div class="carousel-inner">
+
+                <!-- GRUPO 1 -->
+                <div class="carousel-item active">
+                    <div class="artista-card">
+                        <img src="https://wallpaper.forfun.com/fetch/27/27a66a8219d1a4cfdf6704e55c49acf9.jpeg"
+                             alt="Snop dogg">
+
+                        <div class="nombre-artista">
+                            Snop dogg
+                        </div>
+                    </div>
+                </div>
+
+                <!-- GRUPO 2 -->
+                <div class="carousel-item">
+                    <div class="artista-card">
+                        <img src="https://i.pinimg.com/736x/b0/9f/87/b09f879408a95c2d12ed5c9863e1abc2.jpg" 
+                             class="d-block w-100" 
+                             alt="Eminem">
+
+                        <div class="nombre-artista">
+                            Eminem
+                        </div>
+                    </div>
+                </div>
+
+                <!-- GRUPO 3 -->
+                <div class="carousel-item">
+                    <div class="artista-card">
+                        <img src="https://www.fmhits.com.ar/wp-content/uploads/2025/11/Ice-Spice-Pretty-Privilege-screenshot-billboard-1800.jpg" 
+                             class="d-block w-100" 
+                             alt="Ice Spice">
+
+                        <div class="nombre-artista">
+                            Ice Spice
+                        </div>
+                    </div>
+                </div>
+
+                <!-- GRUPO 4 -->
+                <div class="carousel-item">
+                    <div class="artista-card">
+                        <img src="https://wallpapercat.com/w/full/8/a/9/215131-1920x1080-desktop-1080p-dr-dre-wallpaper.jpg" 
+                             class="d-block w-100" 
+                             alt="Dr.Dre">
+
+                        <div class="nombre-artista">
+                            Dr.Dre
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ARTISTA 5 -->
+                <div class="carousel-item">
+                    <div class="artista-card">
+                        <img src="https://images4.alphacoders.com/909/909096.jpg"
+                             class="d-block w-100" 
+                             alt="Kendrick Lamar">
+
+                        <div class="nombre-artista">
+                            Kendrick Lamar
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- FLECHA IZQUIERDA -->
+            <button class="carousel-control-prev" type="button" 
+                    data-bs-target="#popCarousel" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon"></span>
+            </button>
+
+            <!-- FLECHA DERECHA -->
+            <button class="carousel-control-next" type="button" 
+                    data-bs-target="#popCarousel" data-bs-slide="next">
+                <span class="carousel-control-next-icon"></span>
+            </button>
+
+        </div>
+    </div>
+</section>
+
+<!-- ======================= -->
+<!-- 3. LISTA DE ARTISTAS -->
+<!-- ======================= -->
+
+<section class="lista-artistas">
+
+    <div class="container">
+
+        <h2 class="titulo-lista">
+            ♫ Artistas y sus canciones ♫
+        </h2>
+
+
+        <div class="row g-4">
+
+
+            <!-- ====================== -->
+            <!-- ARTISTA 1 -->
+            <!-- ====================== -->
+
+            <div class="col-md-6 col-lg-4">
+
+                <div class="tarjeta-artista" id="Residente">
+
+                    <img src="https://www.larata.cl/wp-content/uploads/2019/01/residente.jpg"
+                         alt="Residente">
+
+                    <div class="info-artista">
+
+                        <h4>
+                            ~ Residente ~
+                        </h4>
+
+
+                        <div class="cancion-item">
+
+                            <span class="cancion-nombre">
+                                1. Residente: Bzrp Music Sessions
+                            </span>
+
+                        <button class="btn-reproducir"
+                                data-audio="Rap Musicas/1.- Residente: Bzrp Music Sessions.mp3"
+                                data-cancion="Residente: Bzrp Music Sessions - Residente">
+
+                            <i class="bi bi-play-fill"></i>
+
+                        </button>
+
+                    </div>
+                        <div class="cancion-item">
+
+                            <span class="cancion-nombre">
+                                2. La Cátedra
+                            </span>
+
+                        <button class="btn-reproducir"
+                                data-audio="Rap Musicas/2.- La Cátedra.mp3"
+                                data-cancion="La Cátedra - Residente">
+
+                                <i class="bi bi-play-fill"></i>
+
+                        </button>
+                    </div>
+
+                    
+                        <div class="cancion-item">
+
+                            <span class="cancion-nombre">
+                                3. Rap Bruto
+                            </span>
+
+                            <button class="btn-reproducir"
+                                    data-audio="Rap Musicas/3.- Rap Bruto.mp3"
+                                    data-cancion="Rap Bruto - Residente">
+
+                                <i class="bi bi-play-fill"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ====================== -->
+            <!-- ARTISTA 2 -->
+            <!-- ====================== -->
+
+            <div class="col-md-6 col-lg-4">
+
+                <div class="tarjeta-artista" id="Trueno">
+
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQlhntkkyoXDRKb6e2UZTjReRm2vBGD90rFWqdFpzOfXHL5aKpyH1hSy4lE&s=10"
+                         alt="Trueno">
+
+                    <div class="info-artista">
+
+                        <h4>
+                            ~ Trueno ~
+                        </h4>
+
+
+                        <div class="cancion-item">
+
+                            <span class="cancion-nombre">
+                                1. 90s
+                            </span>
+
+                            <button class="btn-reproducir"
+                                    data-audio="Rap Musicas/4.- 90s.mp3"
+                                    data-cancion="90s - Trueno ">
+
+                                <i class="bi bi-play-fill"></i>
+                            </button>
+
+                        </div>
+
+
+                        <div class="cancion-item">
+
+                            <span class="cancion-nombre">
+                                2. Real Gangsta Love 
+                            </span>
+
+                            <button class="btn-reproducir"
+                                    data-audio="Rap Musicas/5.- Real Gangsta Love .mp3"
+                                    data-cancion="Real Gangsta Love  - Trueno">
+
+                                <i class="bi bi-play-fill"></i>
+                            </button>
+
+                        </div>
+
+
+                        <div class="cancion-item">
+
+                            <span class="cancion-nombre">
+                                3. Mamichula
+                            </span>
+
+                            <button class="btn-reproducir"
+                                    data-audio="Rap Musicas/6.- Mamichula.mp3"
+                                    data-cancion="Mamichula - Trueno">
+
+                                <i class="bi bi-play-fill"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ====================== -->
+            <!-- ARTISTA 3 -->
+            <!-- ====================== -->
+
+            <div class="col-md-6 col-lg-4">
+
+                <div class="tarjeta-artista" id="Canserbero ">
+
+                    <img src="https://cdn-images.dzcdn.net/images/artist/f5a23e46e41f94e2627e8815931cb597/1900x1900-000000-81-0-0.jpg"
+                         alt="Canserbero ">
+
+                    <div class="info-artista">
+
+                        <h4>
+                            ~ Canserbero  ~
+                        </h4>
+
+
+                        <div class="cancion-item">
+
+                            <span class="cancion-nombre">
+                                1. Querer Querernos
+                            </span>
+
+                            <button class="btn-reproducir"
+                                    data-audio="Rap Musicas/7.- Querer Querernos.mp3"
+                                    data-cancion="Querer Querernos - Canserbero">
+
+                                <i class="bi bi-play-fill"></i>
+                            </button>
+
+                        </div>
+
+
+                        <div class="cancion-item">
+
+                            <span class="cancion-nombre">
+                                2. Es épico
+                            </span>
+
+                            <button class="btn-reproducir"
+                                    data-audio="Rap Musicas/8.- Es épico.mp3"
+                                    data-cancion="Es épico - Canserbero">
+
+                                <i class="bi bi-play-fill"></i>
+                            </button>
+
+                        </div>
+
+
+                        <div class="cancion-item">
+
+                            <span class="cancion-nombre">
+                                3. Maquiavélico 
+                            </span>
+
+                            <button class="btn-reproducir"
+                                    data-audio="Rap Musicas/9.- Maquiavélico .mp3"
+                                    data-cancion="Maquiavélico - Canserbero">
+
+                                <i class="bi bi-play-fill"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ====================== -->
+            <!-- Artista 4 -->
+            <!-- ====================== -->
+
+            <div class="col-md-6 col-lg-4">
+
+                <div class="tarjeta-artista" id="50 Cent ">
+
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRLSK2eYbF4L6sJVG1OM4J2qjYxWqFTY31aFT5n5FdkqdTBOVjO08PUJ7E&s=10"
+                         alt="50 Cent ">
+
+                    <div class="info-artista">
+
+                        <h4>
+                            ~ 50 Cent  ~
+                        </h4>
+
+
+                        <div class="cancion-item">
+
+                            <span class="cancion-nombre">
+                                1. In Da Club
+                            </span>
+
+                            <button class="btn-reproducir"
+                                    data-audio="Rap Musicas/10.- In Da Club.mp3"
+                                    data-cancion="In Da Club - 50 Cent ">
+
+                                <i class="bi bi-play-fill"></i>
+                            </button>
+
+                        </div>
+
+
+                        <div class="cancion-item">
+
+                            <span class="cancion-nombre">
+                                2. Candy Shop
+                            </span>
+
+                            <button class="btn-reproducir"
+                                    data-audio="Rap Musicas/11.- Candy Shop.mp3"
+                                    data-cancion="Candy Shop - 50 Cent ">
+
+                                <i class="bi bi-play-fill"></i>
+                            </button>
+
+                        </div>
+
+
+                        <div class="cancion-item">
+
+                            <span class="cancion-nombre">
+                                3. Just A Lil Bit
+                            </span>
+
+                            <button class="btn-reproducir"
+                                    data-audio="Rap Musicas/12.- Just A Lil Bit.mp3"
+                                    data-cancion="Just A Lil Bit - 50 Cent ">
+
+                                <i class="bi bi-play-fill"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ====================== -->
+            <!-- ARTISTA 5 -->
+            <!-- ====================== -->
+
+            <div class="col-md-6 col-lg-4">
+
+                <div class="tarjeta-artista" id="Dr. Dre">
+                    <img src="https://wallpapercat.com/w/full/c/8/d/214968-2719x2039-desktop-hd-dr-dre-wallpaper-photo.jpg"
+                         alt="Dr. Dre">
+
+                    <div class="info-artista">
+
+                        <h4>
+                            ~ Dr. Dre ~
+                        </h4>
+
+
+                        <div class="cancion-item">
+
+                            <span class="cancion-nombre">
+                                1. Still D.R.E.
+                            </span>
+
+                            <button class="btn-reproducir"
+                                    data-audio="Rap Musicas/13.- Still D.R.E..mp3"
+                                    data-cancion="Still D.R.E. - Dr. Dre">
+
+                                <i class="bi bi-play-fill"></i>
+                            </button>
+
+                        </div>
+
+
+                        <div class="cancion-item">
+
+                            <span class="cancion-nombre">
+                                2. The Next Episode
+                            </span>
+
+                            <button class="btn-reproducir"
+                                    data-audio="Rap Musicas/14.- The Next Episode.mp3"
+                                    data-cancion="The Next Episode - Dr. Dre">
+
+                                <i class="bi bi-play-fill"></i>
+                            </button>
+
+                        </div>
+
+
+                        <div class="cancion-item">
+
+                            <span class="cancion-nombre">
+                                3. California Love
+                            </span>
+
+                            <button class="btn-reproducir"
+                                    data-audio="Rap Musicas/15.- California Love.mp3"
+                                    data-cancion="California Love - Dr. Dre">
+
+                                <i class="bi bi-play-fill"></i>
+                            </button>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ====================== -->
+            <!-- ARTISTA 6 -->
+            <!-- ====================== -->
+
+            <div class="col-md-6 col-lg-4">
+
+                <div class="tarjeta-artista" id="Ice Spice">
+
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQCWFpywTGvEc_XH7rf8Jev58WhXc3ivGvuONn3Xijdxlg3ncYl4sCtV60&s=10"
+                         alt="Ice Spice">
+
+                    <div class="info-artista">
+
+                        <h4>
+                            ~ Ice Spice ~
+                        </h4>
+
+
+                        <div class="cancion-item">
+
+                            <span class="cancion-nombre">
+                                1. Oh Shhh...
+                            </span>
+
+                            <button class="btn-reproducir"
+                                    data-audio="Rap Musicas/16.- Oh Shhh....mp3"
+                                    data-cancion="Oh Shhh... - Ice Spice">
+
+                                <i class="bi bi-play-fill"></i>
+                            </button>
+
+                        </div>
+
+
+                        <div class="cancion-item">
+
+                            <span class="cancion-nombre">
+                                2. In Ha Mood
+                            </span>
+
+                            <button class="btn-reproducir"
+                                    data-audio="Rap Musicas/17.- In Ha Mood.mp3"
+                                    data-cancion="In Ha Mood - Ice Spice">
+
+                                <i class="bi bi-play-fill"></i>
+                            </button>
+
+                        </div>
+
+
+                        <div class="cancion-item">
+
+                            <span class="cancion-nombre">
+                                3. Did It First
+                            </span>
+
+                            <button class="btn-reproducir"
+                                    data-audio="Rap Musicas/18.- Did It First.mp3"
+                                    data-cancion="Did It First - Ice Spice">
+
+                                <i class="bi bi-play-fill"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ====================== -->
+            <!-- ARTISTA 7 -->
+            <!-- ====================== -->
+
+            <div class="col-md-6 col-lg-4">
+
+                <div class="tarjeta-artista" id="Kendrick Lamar">
+
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRuoP5ruca0Uz8Vym5JGiIduOKrGSRhYjhM1YVTyQb2Tw&s=10"
+                         alt="Kendrick Lama">
+
+                    <div class="info-artista">
+
+                        <h4>
+                            ~ Kendrick Lamar ~
+                        </h4>
+
+
+                        <div class="cancion-item">
+
+                            <span class="cancion-nombre">
+                                1. Not Like Us
+                            </span>
+
+                            <button class="btn-reproducir"
+                                    data-audio="Rap Musicas/19.- Not Like Us.mp3"
+                                    data-cancion="Not Like Us - Kendrick Lamar">
+
+                                <i class="bi bi-play-fill"></i>
+                            </button>
+
+                        </div>
+
+
+                        <div class="cancion-item">
+
+                            <span class="cancion-nombre">
+                                2. i
+                            </span>
+
+                            <button class="btn-reproducir"
+                                    data-audio="Rap Musicas/20.- i.mp3"
+                                    data-cancion="i - Kendrick Lamar">
+
+                                <i class="bi bi-play-fill"></i>
+                            </button>
+
+                        </div>
+
+
+                        <div class="cancion-item">
+
+                            <span class="cancion-nombre">
+                                3. HUMBLE. 
+                            </span>
+
+                            <button class="btn-reproducir"
+                                    data-audio="Rap Musicas/21.- HUMBLE. .mp3"
+                                    data-cancion="HUMBLE.  - Kendrick Lamar">
+
+                                <i class="bi bi-play-fill"></i>
+                            </button>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ====================== -->
+            <!-- ARTISTA 8 -->
+            <!-- ====================== -->
+
+            <div class="col-md-6 col-lg-4">
+
+                <div class="tarjeta-artista" id="Eminem">
+
+                    <img src="https://p4.wallpaperbetter.com/wallpaper/151/730/526/eminem-hip-hip-hop-hop-wallpaper-preview.jpg"
+                         alt="Eminem">
+
+                    <div class="info-artista">
+
+                        <h4>
+                            ~ Eminem ~
+                        </h4>
+
+
+                        <div class="cancion-item">
+
+                            <span class="cancion-nombre">
+                                1. Rap God
+                            </span>
+
+                            <button class="btn-reproducir"
+                                    data-audio="Rap Musicas/22.- Rap God.mp3"
+                                    data-cancion="Rap God - Eminem">
+
+                                <i class="bi bi-play-fill"></i>
+                            </button>
+
+                        </div>
+
+
+                        <div class="cancion-item">
+
+                            <span class="cancion-nombre">
+                                2. The Monster
+                            </span>
+
+                            <button class="btn-reproducir"
+                                    data-audio="Rap Musicas/23.- The Monster.mp3"
+                                    data-cancion="The Monster - Eminem">
+
+                                <i class="bi bi-play-fill"></i>
+                            </button>
+
+                        </div>
+
+
+                        <div class="cancion-item">
+
+                            <span class="cancion-nombre">
+                                3. Godzilla
+                            </span>
+
+                            <button class="btn-reproducir"
+                                    data-audio="Rap Musicas/24.- Godzilla.mp3"
+                                    data-cancion="Godzilla - Eminem">
+
+                                <i class="bi bi-play-fill"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ====================== -->
+            <!-- ARTISTA 9 -->
+            <!-- ====================== -->
+
+            <div class="col-md-6 col-lg-4">
+
+                <div class="tarjeta-artista" id="Snoop Dogg">
+
+                    <img src="https://cdn.wallpapersafari.com/36/22/QqitHu.jpg"
+                         alt="Snoop Dogg">
+
+                    <div class="info-artista">
+
+                        <h4>
+                            ~ Snoop Dogg ~
+                        </h4>
+
+
+                        <div class="cancion-item">
+
+                            <span class="cancion-nombre">
+                                1. Nuthin' But a 'G' Thang
+                            </span>
+
+                            <button class="btn-reproducir"
+                                    data-audio="Rap Musicas/21.- Nuthin' But a 'G' Thang.mp3"
+                                    data-cancion="Nuthin' But a 'G' Thang - Snoop Dogg>
+
+                                <i class="bi bi-play-fill"></i>
+                            </button>
+                        </div>
+
+
+                        <div class="cancion-item">
+
+                            <span class="cancion-nombre">
+                                2. Young, Wild & Free
+                            </span>
+
+                            <button class="btn-reproducir"
+                                    data-audio="Rap Musicas/22.- Young, Wild & Free.mp3"
+                                    data-cancion="Young, Wild & Free - Snoop Dogg">
+
+                                    <i class="bi bi-play-fill"></i>
+                            </button>
+
+                        </div>
+
+
+                        <div class="cancion-item">
+
+                            <span class="cancion-nombre">
+                                3.- Drop It Like It's Hot
+                            </span>
+
+                            <button class="btn-reproducir"
+                                    data-audio="Rap Musicas/23.-Drop It Like It's Hot.mp3"
+                                    data-cancion="Drop It Like It's Hot - Snoop Dogg">
+
+                                    <i class="bi bi-play-fill"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+<!-- =========== -->
+<!-- =========== -->
+<!-- REPRODUCTOR -->
+ 
+        <div class="reproductor-musica">
+
+            <h5 id="cancion-actual">
+                ♫ Selecciona una canción
+            </h5>
+
+        <audio id="reproductor" controls>
+
+            Tu navegador no soporta el reproductor de audio.
+
+        </audio>
+
+        </div>
+
+</section>
+  
+<!-- ================ -->
+<!-- ================ -->
+<!-- 6. PIE DE PAGINA -->
+    
+    <footer class="bg-secondary text-white py-1">
+        <div class="container text-center">
+            <p class="mb-1">&copy; MUSICLove 2026. Todos los derechos reservados.</p>
+            <div class="fs-5">
+                <a href="https://www.facebook.com/?locale=es_LA" class="text-white me-3"><i class="bi bi-facebook"></i></a>
+                <a href="https://www.instagram.com/dayeduu/" class="text-white me-3"><i class="bi bi-instagram"></i></a>
+                <a href="https://www.whatsapp.com/?lang=es" class="text-white"><i class="bi bi-whatsapp"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- ================ -->
+<!-- ================ -->
+<!-- 0000. FUNCIONE EL REPODUCTOR -->
+
+ <script>
+
+    const botones = document.querySelectorAll(".btn-reproducir");
+    const reproductor = document.getElementById("reproductor");
+    const cancionActual = document.getElementById("cancion-actual");
+
+    botones.forEach(function(boton) {
+        boton.addEventListener("click", function() {
+            const audio = boton.getAttribute("data-audio");
+            const nombre = boton.getAttribute("data-cancion");
+
+            reproductor.src = audio;
+
+            cancionActual.textContent = "♫ " + nombre; 
+
+            reproductor.play();
+
+        });
+    });
+
+</script>
+
+<!-- ====================== -->
+<!-- ====================== -->
+<!-- 0001. Area de registro -->
+ 
+<script>
+    const formularioRegistro = document.getElementById("formularioRegistro");
+    const modalRegistroElemento = document.getElementById("modalRegistro");
+    const mensajeRegistro = document.getElementById("mensajeRegistro");
+
+    const modalRegistro = bootstrap.Modal.getOrCreateInstance(
+        modalRegistroElemento
+    );
+
+
+    formularioRegistro.addEventListener("submit", function (evento) {
+        evento.preventDefault();
+
+        if (!formularioRegistro.checkValidity()) {
+            formularioRegistro.reportValidity();
+            return;
+        }
+
+        const usuario = document
+            .getElementById("usuarioRegistro")
+            .value.trim();
+
+// Guardar el nombre
+            sessionStorage.setItem("musicloveUsuario", usuario);
+
+// Actualizar la barra inmediatamente
+            actualizarUsuario();
+
+// Mostrar confirmación
+        mensajeRegistro.textContent =
+            `¡Bienvenido a MUSICLove, ${usuario}!`;
+
+// Cerrar la ventana
+        setTimeout(function () {
+            modalRegistro.hide();
+        }, 900);
+    });
+
+// Limpia los campos y el mensaje cuando se cierra la ventana.
+    modalRegistroElemento.addEventListener("hidden.bs.modal", function () {
+        formularioRegistro.reset();
+        mensajeRegistro.textContent = "";
+    });
+
+</script>
+
+<script>
+    const enlaceRegistro = document.getElementById("enlaceRegistro");
+
+    function actualizarUsuario() {
+        const usuario = sessionStorage.getItem("musicloveUsuario");
+
+        if (usuario) {
+            enlaceRegistro.textContent = usuario;
+            enlaceRegistro.removeAttribute("data-bs-toggle");
+            enlaceRegistro.removeAttribute("data-bs-target");
+            enlaceRegistro.href = "#";
+        } else {
+            enlaceRegistro.textContent = "REGÍSTRATE";
+            enlaceRegistro.setAttribute("data-bs-toggle", "modal");
+            enlaceRegistro.setAttribute("data-bs-target", "#modalRegistro");
+        }
+    }
+
+    actualizarUsuario();
+</script>
+
+</body>
+</html>
