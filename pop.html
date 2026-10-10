@@ -4,10 +4,162 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MUSICLove</title>
+    <link rel="shortcut icon" href="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRfMv4hpHgt9XxihiU_MSpVlT9xQp-SeMHmsGuF7uQJOk9LI5cD7ufKfVLC&s=10" type="image/x-icon">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
 
 <style>
+/* ====================== */
+/* AREA DE REGISTRO*/
+/* ====================== */
+
+/* FONDO OSCURO DE LA VENTANA */
+         #modalRegistro .modal-content {
+            background: #17121f;
+            color: #f8f5ff;
+            border: 1px solid #9b4de0;
+            border-radius: 15px;
+            box-shadow: 0 0 25px rgba(157, 62, 235, 0.18);
+            overflow: hidden;
+         }
+
+/* ENCABEZADO */
+         #modalRegistro .registro-header {
+            border-bottom: none;
+            padding: 20px 18px 8px;
+         }   
+
+         #modalRegistro .modal-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #e6c5ff;
+         }
+
+         #modalRegistro .modal-title i {
+            color: #c77dff;
+         }
+
+         #modalRegistro .btn-close {
+            opacity: 0.8;
+         }
+
+         #modalRegistro .modal-body {
+            padding: 10px 18px 20px;
+         }
+
+         #modalRegistro .registro-descripcion {
+            margin-bottom: 16px;
+            color: #e2dbea;
+         }   
+
+/* ETIQUETAS */
+         #modalRegistro .form-label {
+            display: block;
+            margin-bottom: 6px;
+            color: #f5efff;
+            font-size: 0.95rem;
+         }
+
+/* CAMPOS DE TEXTO */
+         #modalRegistro .registro-input {
+            min-height: 40px;
+            background: #292233;
+            color: #ffffff;
+            border: 1px solid transparent;
+            border-radius: 8px;
+            padding: 10px;
+         }
+
+         #modalRegistro .registro-input::placeholder {
+            color: #b8a9c8;
+         }
+
+         #modalRegistro .registro-input:focus {
+            background: #292233;
+            color: #ffffff;
+            border-color: #a33df0;
+            box-shadow: 0 0 0 3px rgba(163, 61, 240, 0.18);
+         }
+
+/* BOTÓN CREAR CUENTA */
+         #modalRegistro .registro-boton {
+            min-height: 55px;
+            background: #982fe8;
+            border: none;
+            border-radius: 8px;
+            color: #ffffff;
+            font-weight: 700;
+            transition: background 0.2s, transform 0.2s;
+         }
+
+         #modalRegistro .registro-boton:hover {
+            background: #ad46f5;
+            transform: translateY(-1px);
+         }
+
+/* MENSAJE DE CONFIRMACIÓN */
+         #modalRegistro .mensaje-registro {
+            margin: 12px 0 0;
+            text-align: center;
+            font-size: 0.9rem;
+            color: #cba7ed;
+         }
+
+/* FONDO DETRÁS DE LA VENTANA */
+         .modal-backdrop.show {
+            opacity: 0.78;
+         }
+
+/* AJUSTE PARA CELULARES */
+         @media (max-width: 576px) {
+         #modalRegistro .modal-dialog {
+            margin: 12px;
+         }
+
+        #modalRegistro .registro-header {
+            padding-top: 16px;
+         }
+
+         #modalRegistro .modal-title {
+            font-size: 1.05rem;
+         }
+         }
+         
+/* ====================== */
+/* BARRA DE GENEROS */
+/* ====================== */
+
+         .navbar .nav-item.dropdown {
+            position: relative;
+         }
+
+         .navbar .dropdown-menu {
+            position: absolute !important;
+            top: 100% !important;
+            left: 50% !important;
+            right: auto !important;
+            transform: translateX(-50%) !important;
+            margin-top: 0 !important;
+            background-color: #0d0d0d !important;
+         }
+
+         .navbar .dropdown-item {
+            color: white !important;
+         }
+         
+/* ====================== */
+/* COLOR DE "REGISTROS" */
+/* ====================== */
+
+         .navbar .nav-link#enlaceRegistro {
+            color: #000000 !important;
+         }
+
+         .navbar .nav-link#enlaceRegistro:hover,
+         .navbar .nav-link#enlaceRegistro:focus {
+            color: #000000 !important;
+         }
+        
 /* ====================== */
 /* ARTISTAS DEL POP */
 /* ====================== */
@@ -82,7 +234,7 @@
 
          .carousel-control-prev:hover,
          .carousel-control-next:hover {
-            background: #ffc107;
+            background: #74887b;
          }
 /* ====================== */
 /* TARJETAS DE CANCIONES */
@@ -108,102 +260,103 @@
             height: 100%;
             transition: 0.3s;
             border: 1px solid #242424;
-             }
+         }
 
-.tarjeta-artista:hover {
-    transform: translateY(-5px);
-    background: #1c1c1c;
-}
+        .tarjeta-artista:hover {
+            transform: translateY(-5px);
+            background: #1c1c1c;
+         }
 
 /* Imagen */
 
-.tarjeta-artista img {
-    width: 100%;
-    height: 210px;
-    object-fit: cover;
-    display: block;
-}
+         .tarjeta-artista img {
+            width: 100%;
+            height: 210px;
+            object-fit: cover;
+            display: block;
+         }
 
 /* Información */
 
-.info-artista {
-    padding: 18px;
-}
+        .info-artista {
+            padding: 18px;
+        }
 
-.info-artista h4 {
-    color: white;
-    font-size: 20px;
-    font-weight: bold;
-    margin-bottom: 15px;
-}
+         .info-artista h4 {
+            color: white;
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 15px;
+         }
 
 /* Canciones */
 
-.cancion-item {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+         .cancion-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
 
-    padding: 10px 0;
+            padding: 10px 0;
 
-    border-bottom: 1px solid #292929;
-}
+            border-bottom: 1px solid #292929;
+         }
 
-.cancion-item:last-child {
-    border-bottom: none;
-}
+         .cancion-item:last-child {
+            border-bottom: none;
+         }
 
-.cancion-nombre {
-    color: #ddd;
-    font-size: 14px;
-}
+         .cancion-nombre {
+            color: #ddd;
+            font-size: 14px;
+         }
 
 /* Botón reproducir */
 
-.btn-reproducir {
-    width: 34px;
-    height: 34px;
+         .btn-reproducir {
+            width: 34px;
+            height: 34px;
 
-    border: none;
-    border-radius: 50%;
+            border: none;
+            border-radius: 50%;
 
-    background: #ffc107;
-    color: #111;
+            background: #74887b;
+            color: #111;
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
 
-    cursor: pointer;
+            cursor: pointer;
 
-    transition: 0.2s;
-}
+            transition: 0.2s;
+         }
 
-.btn-reproducir:hover {
-    background: white;
-    transform: scale(1.1);
-}
+         .btn-reproducir:hover {
+            background: white;
+            transform: scale(1.1);
+         }
 
 /* Reproductor */
 
-.reproductor-musica {
-    margin-top: 35px;
-    padding: 18px 22px;
+         .reproductor-musica {
+            margin-top: 35px;
+            padding: 18px 22px;
 
-    background: #151515;
-    border-radius: 15px;
+            background: #151515;
+            border-radius: 15px;
 
-    color: white;
-}
+            color: white;
+         }
 
-.reproductor-musica h5 {
-    margin-bottom: 12px;
-    color: #ffc107;
-}
+         .reproductor-musica h5 {
+            margin-bottom: 12px;
+            color: #74887b;
+         }
 
-.reproductor-musica audio {
-    width: 100%;
-        }
+         .reproductor-musica audio {
+            width: 100%;
+         }
+
 </style>
 
 
@@ -211,7 +364,7 @@
 <!-- ====================== -->
 <!-- 1. BARRA DE NAVEGACION -->
 
-    <nav class="navbar navbar-expand-lg navbar-dark bg-warning sticky-top shadow-sm">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-secondary sticky-top shadow-sm">
         <div class="container">
             <a class="navbar-brand fw-bold text-uppercase" href="#" style="color:black">
                 <i class="bi bi-emoji-heart-eyes"></i> MUSICLove
@@ -222,33 +375,118 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto align-items-center">
                     <li class="nav-item">
-                        <a class="nav-link active" href="Pagina web.html" style="color:black">VOLVER</a>
+                        <a class="nav-link active" href="1 Pagina web.html" style="color:black">VOLVER AL INICIO</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="color:black">GÉNEROS</a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="rock.html">Rock</a></li>
+                            <li><a class="dropdown-item" href="salsa.html">Salsa</a></li>
+                            <li><a class="dropdown-item" href="reggaeton.html">Reggaetón</a></li>
+                            <li><a class="dropdown-item" href="rap.html">Rap</a></li>
+                            <li><a class="dropdown-item" href="kpop.html">K-pop</a></li>
+                            <li><a class="dropdown-item" href="electronica.html">Electrónica</a></li>
+                            <li><a class="dropdown-item" href="bachata.html">Bachata</a></li>
+                            <li><a class="dropdown-item" href="cumbia.html">Cumbia</a></li>
+                        </ul>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#generos" style="color:black">GÉNEROS</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#cantantes" style="color:black">CANTANTES</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#foro" style="color:black">FORO</a>
+                        <a class="nav-link" href="#cantantes" style="color:black">ESCUCHALOS</a>
                     </li>
                     <li class="nav-item ms-lg-2">
-                        <a class="btn btn-dark btn-sm rounded-pill px-3 fw-semibold" href="#foro">REGISTRATE</a>
+                        <a class="nav-link" href="#"id="enlaceRegistro" data-bs-toggle="modal" data-bs-target="#modalRegistro">REGÍSTRATE</a>
                     </li>
                 </ul>
             </div>
         </div>
     </nav>
 
+<!-- =================== -->
+<!-- =================== -->
+<!-- 1.5 VENTANA DE REGISTRO -->
+
+    <div class="modal fade" id="modalRegistro" tabindex="-1"
+             aria-labelledby="tituloRegistro" aria-hidden="true">
+
+          <div class="modal-dialog modal-dialog-centered">
+             <div class="modal-content registro-contenido">
+
+                <div class="modal-header registro-header">
+                    <h5 class="modal-title" id="tituloRegistro">
+                        <i class="bi bi-music-note-beamed"></i>
+                        Únete a MUSICLove
+                    </h5>
+
+                <button type="button"
+                        class="btn-close btn-close-white"
+                        data-bs-dismiss="modal"
+                        aria-label="Cerrar"></button>
+                </div>
+
+             <div class="modal-body">
+                <p class="registro-descripcion">
+                Crea tu cuenta y disfruta de tu música favorita.
+                </p>
+
+                 <form id="formularioRegistro">
+
+                    <div class="mb-3">
+                         <label for="usuarioRegistro" class="form-label">
+                         Nombre de usuario
+                         </label>
+                        <input type="text"
+                               class="form-control registro-input"
+                               id="usuarioRegistro"
+                               placeholder="Escribe tu usuario..."
+                               minlength="3"
+                               required>
+                    </div>
+
+                    <div class="mb-3">
+                         <label for="correoRegistro" class="form-label">
+                         Correo electrónico
+                         </label>
+                         <input type="email"
+                                class="form-control registro-input"
+                                id="correoRegistro"
+                                placeholder="correo@ejemplo.com"
+                                required>
+                    </div>
+
+                    <div class="mb-4">
+                         <label for="contrasenaRegistro" class="form-label">
+                         Contraseña
+                         </label>
+                         <input type="password"
+                                class="form-control registro-input"
+                                id="contrasenaRegistro"
+                                placeholder="Mínimo 8 caracteres"
+                                minlength="8"
+                                required>
+                         </div>
+
+                    <button type="submit" class="btn registro-boton w-100">
+                    CREAR CUENTA
+                    </button>
+
+                    <p id="mensajeRegistro" class="mensaje-registro"
+                   role="status" aria-live="polite"></p>
+
+                 </form>
+                </div>
+ 
+            </div>
+          </div>
+    </div>
+
 <!-- ======================= -->
 <!-- ======================= -->
 <!-- 2. INTERFAZ DE IMAGENES -->
-A
+
 <section id="cantantes" class="artistas-pop py-5">
     <div class="container">
 
-        <h2 class="text-white fw-bold mb-4">♫ Artistas Pop ♫</h2>
+        <h2 class="text-white fw-bold mb-4">♫ Pop ♫</h2>
 
         <div id="popCarousel" class="carousel slide" data-bs-ride="carousel">
 
@@ -295,7 +533,7 @@ A
                 <!-- ARTISTA 4 -->
                 <div class="carousel-item">
                     <div class="artista-card">
-                        <img src="https://blog.richersounds.com/wp-content/uploads/2020/03/the-weeknd.jpg" 
+                        <img src="https://i.ytimg.com/vi/fHI8X4OXluQ/maxresdefault.jpg" 
                              class="d-block w-100" 
                              alt="The Weeknd">
 
@@ -366,7 +604,7 @@ A
                     <div class="info-artista">
 
                         <h4>
-                            Lady Gaga
+                            ~ Lady Gaga ~
                         </h4>
 
 
@@ -382,7 +620,7 @@ A
 
                             <i class="bi bi-play-fill"></i>
 
-</button>
+                         </button>
 
                     </div>
                         <div class="cancion-item">
@@ -432,7 +670,7 @@ A
                     <div class="info-artista">
 
                         <h4>
-                            Billie Eilish
+                            ~ Billie Eilish ~
                         </h4>
 
 
@@ -442,9 +680,14 @@ A
                                 1. BIRDS OF A FEATHER
                             </span>
 
-                            <button class="btn-reproducir">
-                                <i class="bi bi-play-fill"></i>
-                            </button>
+
+                        <button class="btn-reproducir"
+                                data-audio="Pop Musicas/4.- BIRDS OF A FEATHER.mp3"
+                                data-cancion="BIRDS OF A FEATHER - Billie Eilish">
+
+                            <i class="bi bi-play-fill"></i>
+
+                         </button>
 
                         </div>
 
@@ -452,12 +695,17 @@ A
                         <div class="cancion-item">
 
                             <span class="cancion-nombre">
-                                2. bad guy
+                                2. Bad Guy
                             </span>
 
-                            <button class="btn-reproducir">
-                                <i class="bi bi-play-fill"></i>
-                            </button>
+
+                        <button class="btn-reproducir"
+                                data-audio="Pop Musicas/5 .- Bad Guy.mp3"
+                                data-cancion="Bad Guy - Billie Eilish">
+
+                            <i class="bi bi-play-fill"></i>
+
+                         </button>
 
                         </div>
 
@@ -465,10 +713,13 @@ A
                         <div class="cancion-item">
 
                             <span class="cancion-nombre">
-                                3. ocean eyes
+                                3. Therefore I Am
                             </span>
 
-                            <button class="btn-reproducir">
+                            <button class="btn-reproducir"
+                                    data-audio="Pop Musicas/6.-  Therefore I Am.mp3"
+                                    data-cancion="Therefore I Am - Billie Eilish">
+
                                 <i class="bi bi-play-fill"></i>
                             </button>
                         </div>
@@ -482,7 +733,7 @@ A
 
             <div class="col-md-6 col-lg-4">
 
-                <div class="tarjeta-artista" id="Bruno Mars">
+                <div class="tarjeta-artista" id="Olivia Rodrigo">
 
                     <img src="https://indietheka.com/wp-content/uploads/2026/06/indietheka-olivia-rodrigo-you-seem-pretty-sad-for-a-girl-so-in-love-cover-1024x576.jpg"
                          alt="Olivia Rodrigo">
@@ -490,7 +741,7 @@ A
                     <div class="info-artista">
 
                         <h4>
-                            Olivia Rodrigo
+                            ~ Olivia Rodrigo ~
                         </h4>
 
 
@@ -500,9 +751,14 @@ A
                                 1. Good 4 u
                             </span>
 
-                            <button class="btn-reproducir">
-                                <i class="bi bi-play-fill"></i>
-                            </button>
+
+                        <button class="btn-reproducir"
+                                data-audio="Pop Musicas/7.- Good 4 u.mp3"
+                                data-cancion="Good 4 u - Olivia Rodrigo">
+
+                            <i class="bi bi-play-fill"></i>
+
+                         </button>
 
                         </div>
 
@@ -510,12 +766,17 @@ A
                         <div class="cancion-item">
 
                             <span class="cancion-nombre">
-                                2. Deja vu
+                                2. Deja Vu
                             </span>
 
-                            <button class="btn-reproducir">
-                                <i class="bi bi-play-fill"></i>
-                            </button>
+
+                        <button class="btn-reproducir"
+                                data-audio="Pop Musicas/8.- Deja Vu.mp3"
+                                data-cancion="Deja Vu - Olivia Rodrigo">
+
+                            <i class="bi bi-play-fill"></i>
+
+                         </button>
 
                         </div>
 
@@ -526,9 +787,14 @@ A
                                 3. Vampire
                             </span>
 
-                            <button class="btn-reproducir">
-                                <i class="bi bi-play-fill"></i>
-                            </button>
+
+                        <button class="btn-reproducir"
+                                data-audio="Pop Musicas/9.- Vampire.mp3"
+                                data-cancion="Vampire - Olivia Rodrigo">
+
+                            <i class="bi bi-play-fill"></i>
+
+                         </button>
                         </div>
                     </div>
                 </div>
@@ -548,7 +814,7 @@ A
                     <div class="info-artista">
 
                         <h4>
-                            The Weeknd
+                            ~ The Weeknd ~
                         </h4>
 
 
@@ -558,9 +824,14 @@ A
                                 1. Blinding Lights
                             </span>
 
-                            <button class="btn-reproducir">
-                                <i class="bi bi-play-fill"></i>
-                            </button>
+
+                        <button class="btn-reproducir"
+                                data-audio="Pop Musicas/10.- Blinding Lights.mp3"
+                                data-cancion="Blinding Lights - The Weeknd">
+
+                            <i class="bi bi-play-fill"></i>
+
+                         </button>
 
                         </div>
 
@@ -568,12 +839,17 @@ A
                         <div class="cancion-item">
 
                             <span class="cancion-nombre">
-                                2. Starboy
+                                2. Die For You
                             </span>
 
-                            <button class="btn-reproducir">
-                                <i class="bi bi-play-fill"></i>
-                            </button>
+
+                        <button class="btn-reproducir"
+                                data-audio="Pop Musicas/11.- Die For You.mp3"
+                                data-cancion="Die For You - The Weeknd">
+
+                            <i class="bi bi-play-fill"></i>
+
+                         </button>
 
                         </div>
 
@@ -584,9 +860,14 @@ A
                                 3. Save Your Tears
                             </span>
 
-                            <button class="btn-reproducir">
-                                <i class="bi bi-play-fill"></i>
-                            </button>
+
+                        <button class="btn-reproducir"
+                                data-audio="Pop Musicas/12.- Save Your Tears.mp3"
+                                data-cancion="Save Your Tears - The Weeknd">
+
+                            <i class="bi bi-play-fill"></i>
+
+                         </button>
                         </div>
                     </div>
                 </div>
@@ -605,17 +886,20 @@ A
                     <div class="info-artista">
 
                         <h4>
-                            JENNIE
+                            ~ JENNIE ~
                         </h4>
 
 
                         <div class="cancion-item">
 
                             <span class="cancion-nombre">
-                                1. Fallen angel
+                                1. Fallen Angel
                             </span>
 
-                            <button class="btn-reproducir">
+                            <button class="btn-reproducir"
+                                    data-audio="Pop Musicas/13.- Fallen Angel.mp3"
+                                    data-cancion="Fallen Angel - JENNIE">
+
                                 <i class="bi bi-play-fill"></i>
                             </button>
 
@@ -628,7 +912,10 @@ A
                                 2. Mantra
                             </span>
 
-                            <button class="btn-reproducir">
+                            <button class="btn-reproducir"
+                                    data-audio="Pop Musicas/14.- Mantra.mp3"
+                                    data-cancion="Mantra - JENNIE">
+
                                 <i class="bi bi-play-fill"></i>
                             </button>
 
@@ -638,10 +925,13 @@ A
                         <div class="cancion-item">
 
                             <span class="cancion-nombre">
-                                3. Love Hangover
+                                3. Love Hangover (feat. Dominic Fike)
                             </span>
 
-                            <button class="btn-reproducir">
+                            <button class="btn-reproducir"
+                                    data-audio="Pop Musicas/15.- Love Hangover (feat. Dominic Fike).mp3"
+                                    data-cancion="Love Hangover (feat. Dominic Fike) - JENNIE">
+
                                 <i class="bi bi-play-fill"></i>
                             </button>
 
@@ -664,7 +954,7 @@ A
                     <div class="info-artista">
 
                         <h4>
-                            Justin Bieber
+                            ~ Justin Bieber ~
                         </h4>
 
 
@@ -674,7 +964,10 @@ A
                                 1. Yummy
                             </span>
 
-                            <button class="btn-reproducir">
+                            <button class="btn-reproducir"
+                                    data-audio="Pop Musicas/16.- Yummy.mp3"
+                                    data-cancion="Yummy - Justin Bieber">
+
                                 <i class="bi bi-play-fill"></i>
                             </button>
 
@@ -687,7 +980,10 @@ A
                                 2. Sorry
                             </span>
 
-                            <button class="btn-reproducir">
+                            <button class="btn-reproducir"
+                                    data-audio="Pop Musicas/17.- Sorry.mp3"
+                                    data-cancion="Sorry - Justin Bieber">
+
                                 <i class="bi bi-play-fill"></i>
                             </button>
 
@@ -700,7 +996,10 @@ A
                                 3. Baby
                             </span>
 
-                            <button class="btn-reproducir">
+                            <button class="btn-reproducir"
+                                    data-audio="Pop Musicas/18.- Baby.mp3"
+                                    data-cancion="Baby - Justin Bieber">
+
                                 <i class="bi bi-play-fill"></i>
                             </button>
                         </div>
@@ -722,17 +1021,20 @@ A
                     <div class="info-artista">
 
                         <h4>
-                            Bruno Mars
+                            ~ Bruno Mars ~
                         </h4>
 
 
                         <div class="cancion-item">
 
                             <span class="cancion-nombre">
-                                1. Die with a smile
+                                1. Die With a Smile
                             </span>
 
-                            <button class="btn-reproducir">
+                            <button class="btn-reproducir"
+                                    data-audio="Pop Musicas/19.- Die With a Smile.mp3"
+                                    data-cancion="Die With a Smile - Bruno Mars">
+
                                 <i class="bi bi-play-fill"></i>
                             </button>
 
@@ -742,10 +1044,13 @@ A
                         <div class="cancion-item">
 
                             <span class="cancion-nombre">
-                                2. Apt
+                                2. APT.
                             </span>
 
-                            <button class="btn-reproducir">
+                            <button class="btn-reproducir"
+                                    data-audio="Pop Musicas/20.- APT..mp3"
+                                    data-cancion="APT. - Bruno Mars">
+
                                 <i class="bi bi-play-fill"></i>
                             </button>
 
@@ -758,9 +1063,14 @@ A
                                 3. Treasure
                             </span>
 
-                            <button class="btn-reproducir">
-                                <i class="bi bi-play-fill"></i>
-                            </button>
+  
+                        <button class="btn-reproducir"
+                                data-audio="Pop Musicas/21.- Treasure.mp3"
+                                data-cancion="Treasure - Bruno Mars">
+
+                            <i class="bi bi-play-fill"></i>
+
+                         </button>
 
                         </div>
                     </div>
@@ -781,7 +1091,7 @@ A
                     <div class="info-artista">
 
                         <h4>
-                            Sabrina Carpenter
+                            ~ Sabrina Carpenter ~
                         </h4>
 
 
@@ -791,7 +1101,10 @@ A
                                 1. Espresso
                             </span>
 
-                            <button class="btn-reproducir">
+                            <button class="btn-reproducir"
+                                    data-audio="Pop Musicas/22.- Espresso.mp3"
+                                    data-cancion="Espresso - Sabrina Carpenter">
+
                                 <i class="bi bi-play-fill"></i>
                             </button>
 
@@ -801,10 +1114,13 @@ A
                         <div class="cancion-item">
 
                             <span class="cancion-nombre">
-                                2. Bad time
+                                2. Bad Chem
                             </span>
 
-                            <button class="btn-reproducir">
+                            <button class="btn-reproducir"
+                                    data-audio="Pop Musicas/23.- Bad Chem.mp3"
+                                    data-cancion="Bad Chem - Sabrina Carpenter">
+
                                 <i class="bi bi-play-fill"></i>
                             </button>
 
@@ -817,7 +1133,10 @@ A
                                 3. Feather
                             </span>
 
-                            <button class="btn-reproducir">
+                            <button class="btn-reproducir"
+                                    data-audio="Pop Musicas/24.- Feather.mp3"
+                                    data-cancion="Feather - Sabrina Carpenter">
+
                                 <i class="bi bi-play-fill"></i>
                             </button>
                         </div>
@@ -839,7 +1158,7 @@ A
                     <div class="info-artista">
 
                         <h4>
-                            Taylor Swift
+                            ~ Taylor Swift ~
                         </h4>
 
 
@@ -849,7 +1168,10 @@ A
                                 1. Blank Space
                             </span>
 
-                            <button class="btn-reproducir">
+                            <button class="btn-reproducir"
+                                    data-audio="Pop Musicas/25.- Blank Space.mp3"
+                                    data-cancion="Blank Space - Taylor Swift">
+                                    
                                 <i class="bi bi-play-fill"></i>
                             </button>
 
@@ -862,7 +1184,9 @@ A
                                 2. Cruel Summer
                             </span>
 
-                            <button class="btn-reproducir">
+                            <button class="btn-reproducir"
+                                    data-audio="Pop Musicas/26.- Cruel Summer.mp3"
+                                    data-cancion="Cruel Summer - Taylor Swift">
                                 <i class="bi bi-play-fill"></i>
                             </button>
 
@@ -872,10 +1196,13 @@ A
                         <div class="cancion-item">
 
                             <span class="cancion-nombre">
-                                3. Anti-Hero
+                                3.  Shake It Off 
                             </span>
 
-                            <button class="btn-reproducir">
+                            <button class="btn-reproducir"
+                                    data-audio="Pop Musicas/27.- Shake If Off.mp3"
+                                    data-cancion="Shake If Off - Taylor Swift">
+
                                 <i class="bi bi-play-fill"></i>
                             </button>
 
@@ -909,12 +1236,12 @@ A
 <!-- ================ -->
 <!-- 6. PIE DE PAGINA -->
     
-    <footer class="bg-warning text-white py-1">
+    <footer class="bg-secondary text-white py-1">
         <div class="container text-center">
             <p class="mb-1">&copy; MUSICLove 2026. Todos los derechos reservados.</p>
             <div class="fs-5">
-                <a href="https://www.instagram.com/?hl=es" class="text-white me-3"><i class="bi bi-facebook"></i></a>
-                <a href="https://www.facebook.com/?locale=es_LA" class="text-white me-3"><i class="bi bi-instagram"></i></a>
+                <a href="https://www.facebook.com/?locale=es_LA" class="text-white me-3"><i class="bi bi-facebook"></i></a>
+                <a href="https://www.instagram.com/dayeduu/" class="text-white me-3"><i class="bi bi-instagram"></i></a>
                 <a href="https://www.whatsapp.com/?lang=es" class="text-white"><i class="bi bi-whatsapp"></i></a>
             </div>
         </div>
@@ -929,33 +1256,94 @@ A
  <script>
 
     const botones = document.querySelectorAll(".btn-reproducir");
-
     const reproductor = document.getElementById("reproductor");
-
     const cancionActual = document.getElementById("cancion-actual");
 
-
     botones.forEach(function(boton) {
-
         boton.addEventListener("click", function() {
-
             const audio = boton.getAttribute("data-audio");
-
             const nombre = boton.getAttribute("data-cancion");
-
 
             reproductor.src = audio;
 
             cancionActual.textContent = "♫ " + nombre; 
 
-
             reproductor.play();
 
-
         });
-
     });
 
+</script>
+
+<!-- ====================== -->
+<!-- ====================== -->
+<!-- 0001. Area de registro -->
+
+<script>
+    const formularioRegistro = document.getElementById("formularioRegistro");
+    const modalRegistroElemento = document.getElementById("modalRegistro");
+    const mensajeRegistro = document.getElementById("mensajeRegistro");
+
+    const modalRegistro = bootstrap.Modal.getOrCreateInstance(
+        modalRegistroElemento
+    );
+
+
+    formularioRegistro.addEventListener("submit", function (evento) {
+        evento.preventDefault();
+
+        if (!formularioRegistro.checkValidity()) {
+            formularioRegistro.reportValidity();
+            return;
+        }
+
+        const usuario = document
+            .getElementById("usuarioRegistro")
+            .value.trim();
+
+// Guardar el nombre
+            sessionStorage.setItem("musicloveUsuario", usuario);
+
+// Actualizar la barra inmediatamente
+            actualizarUsuario();
+
+// Mostrar confirmación
+        mensajeRegistro.textContent =
+            `¡Bienvenido a MUSICLove, ${usuario}!`;
+
+// Cerrar la ventana
+        setTimeout(function () {
+            modalRegistro.hide();
+        }, 900);
+    });
+
+// Limpia los campos y el mensaje cuando se cierra la ventana.
+    modalRegistroElemento.addEventListener("hidden.bs.modal", function () {
+        formularioRegistro.reset();
+        mensajeRegistro.textContent = "";
+    });
+
+</script>
+
+<script>
+    const enlaceRegistro = document.getElementById("enlaceRegistro");
+
+    function actualizarUsuario() {
+        const usuario = sessionStorage.getItem("musicloveUsuario");
+
+        if (usuario) {
+            enlaceRegistro.textContent = usuario;
+            enlaceRegistro.removeAttribute("data-bs-toggle");
+            enlaceRegistro.removeAttribute("data-bs-target");
+            enlaceRegistro.href = "#";
+        } else {
+            enlaceRegistro.textContent = "REGÍSTRATE";
+            enlaceRegistro.setAttribute("data-bs-toggle", "modal");
+            enlaceRegistro.setAttribute("data-bs-target", "#modalRegistro");
+        }
+    }
+
+    actualizarUsuario();
 </script>
 
 </body>
